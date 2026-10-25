@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>دستیار شخصی من</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;background:#101827;color:#fff;
+  font-family:Arial,sans-serif;min-height:100vh;
+  display:flex;justify-content:center
+}
+.app{width:100%;max-width:600px;height:100dvh;
+display:flex;flex-direction:column;padding:16px}
+header{padding:16px;background:#1c2940;
+border-radius:18px;text-align:center}
+header h2{margin:0 0 8px}
+header p{margin:0;color:#b8c7dc}
+#chat{flex:1;overflow-y:auto;padding:14px 0}
+.msg{padding:12px 15px;border-radius:16px;
+margin:10px 0;max-width:90%;white-space:pre-wrap;
+overflow-wrap:anywhere;line-height:1.8}
+.bot{background:#263750;margin-left:auto}
+.user{background:#176b59;margin-right:auto}
+form{display:flex;gap:8px;padding:10px 0}
+input{min-width:0;flex:1;border:0;border-radius:14px;
+padding:14px;font-size:16px;background:#fff;color:#111}
+button{border:0;border-radius:14px;padding:12px 16px;
+font-size:16px;background:#43c59e;color:#08251d}
+footer{text-align:center;font-size:12px;color:#a8b6ca;padding:8px}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<h2>🤖 دستیار شخصی من</h2>
+<p>نسخهٔ اولیه · آماده برای توسعه</p>
+</header>
+<main id="chat" aria-live="polite">
+<div class="msg bot">سلام! 👋
+من دستیار شخصی تو هستم.
+فعلاً نسخهٔ اولیه‌ام و هنوز به هوش مصنوعی متصل نشده‌ام.
+پیامت رو بنویس تا گفت‌وگو رو شروع کنیم.</div>
+</main>
+<form id="form">
+<input id="input" placeholder="پیامت رو بنویس..." autocomplete="off" required>
+<button type="submit">ارسال</button>
+</form>
+<footer>نسخهٔ آزمایشی دستیار شخصی</footer>
+</div>
+<script>
+const form=document.getElementById('form');
+const input=document.getElementById('input');
+const chat=document.getElementById('chat');
+
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  const text=input.value.trim();
+  if(!text)return;
+  addMessage(text,'user');
+  input.value='';
+  addMessage('پیامت دریافت شد! برای پاسخ هوشمند، باید در مرحلهٔ بعد من را به یک سرویس هوش مصنوعی متصل کنیم.','bot');
+});
+
+function addMessage(text,type){
+  const div=document.createElement('div');
+  div.className='msg '+type;
+  div.textContent=text;
+  chat.appendChild(div);
+  chat.scrollTop=chat.scrollHeight;
+}
+</script>
+</body>
+  </html>
